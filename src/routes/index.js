@@ -10,13 +10,14 @@ router.get('/palavras', async (req, res) => {
       .from('palavras')
       .select('*')
       .order('peso', { ascending: false })
+      .limit(20)
 
     if (error) throw error
 
     // Formatando para d3-cloud
     const palavrasFormatadas = data.map(item => ({
       text: item.palavra,
-      size: item.peso * 20 // Multiplicador para melhor visualização
+      size: item.peso * 10 // Multiplicador para melhor visualização
     }))
 
     res.json(palavrasFormatadas)
